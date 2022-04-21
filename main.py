@@ -36,8 +36,8 @@ class Quiniela:
     def __get_high_score(self, docs_with_points):
         """
         Method that obtains the maximum score value of all competitors
-        :param docs_with_points:
-        :return:
+        :param docs_with_points: <dict>
+        :return: max(scores): <int>
         """
         scores = []
         for each in docs_with_points:
@@ -47,8 +47,8 @@ class Quiniela:
     def __get_winer(self, docs_with_points):
         """
         Method that analyzes the list of users and determines the winners
-        :param docs_with_points:
-        :return:
+        :param docs_with_points: <dict>
+        :return: winners: <list>
         """
         winners = []
         high_score = self.__get_high_score(docs_with_points)
@@ -60,9 +60,9 @@ class Quiniela:
     def __get_criteria(self, result, game):
         """
         Method that returns a criteria based on the result
-        :param result:
-        :param game:
-        :return:
+        :param result: <dict>
+        :param game: <int>
+        :return: criteria: <str>
         """
         criteria = None
         results = result[f'{"game"} {game}'].split("-")
