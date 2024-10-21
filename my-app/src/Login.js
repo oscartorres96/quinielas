@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './Login.css';  // Importa los estilos
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -28,28 +29,37 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <div className="login-container">
+      <div className="login-box">
+        <div className="app-header">
+          <img src="/Quinielas-logo.jpg" alt="App Logo" className="app-logo"/>
+          <h1 className="app-name">Quinielas Oscarin</h1>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {token && <p>Logged in! Token: {token}</p>}
+
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className="input-group">
+            <label>Username:</label>
+            <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
+            />
+          </div>
+          <div className="input-group">
+            <label>Password:</label>
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+            />
+          </div>
+          <button type="submit" className="login-button">Login</button>
+        </form>
+        {token && <p className="success-message">Logged in! Token: {token}</p>}
+      </div>
     </div>
   );
 }

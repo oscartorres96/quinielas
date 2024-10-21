@@ -1,0 +1,112 @@
+/* Estructura básica para centrar el formulario */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.login-box {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Sección del logo y nombre de la app */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.app-logo {
+  width: 15rem;  /* Ajusta el tamaño del logo */
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.app-name {
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+}
+
+/* Estilos de los campos del formulario */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estilos del botón */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mensaje de éxito */
+.success-message {
+  margin-top: 1.5rem;
+  color: #28a745;
+  font-size: 14px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .login-box {
+    padding: 1.5rem;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}
