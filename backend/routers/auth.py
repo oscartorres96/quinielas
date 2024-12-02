@@ -1,23 +1,26 @@
-from fastapi import APIRouter, Depends
+from fastapi import Depends, HTTPException, APIRouter
 from fastapi.security import OAuth2PasswordRequestForm
-from backend.services.auth import login_for_access_token
+from sqlalchemy.orm import Session
 from backend.schemas.token import Token
+from backend.db.config import SessionLocal
+from backend.crud.user import get_user_by_username
+from backend.security import verify_password, create_access_token
 
 router = APIRouter()
 
-fake_users_db = {
-    "testuser": {
-        "username": "testuser",
-        "full_name": "Test User",
-        "email": "testuser@example.com",
-        "password": "newpassword123",
-        "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$KEeD8Pa1nYXHiePDPzVmpA$42/yf4JLPCgIspZiqA3Ip49n8J7uNVrc7bJJpImKoq0",
-        "disabled": False,
-    }
-}
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @router.post("/token", response_model=Token)
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    access_token = login_for_access_token(fake_users_db, form_data)
+async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = get_user_by_username(db, form_data.username)
+    if not user or not verify_password(form_data.password, user.hashed_password):
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+
+    access_token = create_access_token(data={"sub": user.username})
     return {"access_token": access_token, "token_type": "bearer"}
